@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div id="myModal" class="Modal is-hidden is-visuallyHidden">
+        <!-- Modal content -->
+        <div class="Modal-content center">
+            <div class="loader"></div>
+            <p>Please Wait</p>
+        </div>
+      </div>
+
+    <div id="myContainer" class="dropdown center">
+        <div class="dropbtn">Select Cities</div>
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <div class="selectAllDiv">
+            <input type="checkbox" id="selectAll" name="selectAll" value="checkbox">
+            <label for="selectAll"> Select All</label><br>
+        </div>
+        <div id="myDropdown" class="dropdown-content">
+            {%for i in range(0, total_cities)%}
+                <div class="checkbox">
+                    <input type="checkbox" id={{cities[i]}} name="cities">
+                    <label for={{cities[i]}}>{{cities[i]}}</label>                  
+                </div>
+            {%endfor%} 
+        </div>
+        <button class="bottombtn" onclick="download()">Download CSV</button>
+      </div>
+</body>
+<script src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+</html>
